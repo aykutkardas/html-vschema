@@ -7,10 +7,17 @@ export type HTMLSchema = {
 
 export type SchemaOptions = {
   ref?: boolean;
+  ignoredTags?: Array<string>;
 };
 
-const getElement = (el: Element, options: SchemaOptions = {}): HTMLSchema => {
+const getElement = (
+  el: Element,
+  options: SchemaOptions = {}
+): HTMLSchema | null => {
   const tagName = el.tagName.toLowerCase();
+
+  if (options.ignoredTags?.includes(tagName)) return null;
+
   const attributes = {};
   const children: Array<HTMLSchema | string | null> = [];
 
@@ -19,7 +26,7 @@ const getElement = (el: Element, options: SchemaOptions = {}): HTMLSchema => {
   }
 
   for (let child of el.childNodes) {
-    const schema = getSchema(child);
+    const schema = getSchema(child, options);
     if (schema) children.push(schema);
   }
 
@@ -45,7 +52,8 @@ export const getSchema = (
   }
 
   if (el.nodeType === ELEMENT_NODE_TYPE) {
-    return getElement(el as Element, options);
+    const element = getElement(el as Element, options);
+    return element || null;
   }
 
   return null;
