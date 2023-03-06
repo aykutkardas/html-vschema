@@ -6,8 +6,6 @@
 const schema = getSchema(document.body);
 ```
 
-### Output
-
 ```js
 {
   "tagName": "body",
@@ -26,11 +24,11 @@ const schema = getSchema(document.body);
 }
 ```
 
+### With Options
+
 ```js
 const schema = getSchema(document.body, { ref: true });
 ```
-
-### Output
 
 ```js
 {
