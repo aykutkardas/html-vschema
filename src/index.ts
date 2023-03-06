@@ -1,8 +1,13 @@
+export type TextSchema = {
+  text: string;
+  ref?: ChildNode;
+};
+
 export type HTMLSchema = {
   ref?: Element;
   tagName: string;
   attributes: { [key: string]: string };
-  children: Array<HTMLSchema | string | null>;
+  children: Array<HTMLSchema | TextSchema | null>;
 };
 
 export type SchemaOptions = {
@@ -19,7 +24,7 @@ const getElement = (
   if (options.ignoredTags?.includes(tagName)) return null;
 
   const attributes = {};
-  const children: Array<HTMLSchema | string | null> = [];
+  const children: Array<HTMLSchema | TextSchema | null> = [];
 
   for (let attr of el.attributes) {
     attributes[attr.name] = attr.value;
@@ -40,7 +45,7 @@ const getElement = (
 export const getSchema = (
   el: ChildNode | Element | undefined,
   options: SchemaOptions = {}
-): HTMLSchema | string | null => {
+): HTMLSchema | TextSchema | null => {
   const ELEMENT_NODE_TYPE = 1;
   const TEXT_NODE_TYPE = 3;
 
@@ -48,7 +53,7 @@ export const getSchema = (
 
   if (el.nodeType === TEXT_NODE_TYPE) {
     const text = (el as Text).wholeText.replace(/\\n/g, "").trim();
-    return text || null;
+    return { text, ref: el } || null;
   }
 
   if (el.nodeType === ELEMENT_NODE_TYPE) {

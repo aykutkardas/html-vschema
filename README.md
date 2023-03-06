@@ -27,7 +27,9 @@ const schema = getSchema(document.body);
         "class": "text-2xl font-bold"
       },
       "children": [
-        "HTML VSchema"
+        {
+          "text": "HTML VSchema"
+        }
       ]
     }
   ]
@@ -55,7 +57,10 @@ const schema = getSchema(document.body, { ref: true });
         "class": "text-2xl font-bold"
       },
       "children": [
-        "HTML VSchema"
+        {
+          "ref": Text,
+          "text": "HTML VSchema"
+        }
       ]
     }
   ]
