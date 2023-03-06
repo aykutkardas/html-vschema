@@ -1,5 +1,7 @@
 # html-vschema
 
+`html-vschema` creates a simplified and manipulable schema of html.
+
 ### Usage
 
 ```html

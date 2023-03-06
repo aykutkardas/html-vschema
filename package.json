@@ -1,9 +1,26 @@
 {
 	"name": "html-vschema",
 	"version": "0.1.0",
-	"description": "",
+	"description": "HTML VSchema creates a simplified and manipulable schema of html.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"repository": {
+    "type": "git",
+    "url": "git+https://github.com/aykutkardas/html-vschema.git"
+  },
+  "keywords": [
+    "html2schema",
+    "html",
+    "vdom",
+    "dom",
+    "schema"
+  ],
+  "author": "Aykut Kardaş <aykutkrds@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aykutkardas/html-vschema/issues"
+  },
+  "homepage": "https://github.com/aykutkardas/html-vschema#readme",
 	"scripts": {
 		"build": "tsup src/index.ts --format cjs,esm --dts"
 	},
